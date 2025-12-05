@@ -1,13 +1,13 @@
-apiVersion: kafka.strimzi.io/v1
-kind: KafkaNodePool
-metadata:
-  name: kafka-controllers
-  namespace: kafka
-  labels:
-    strimzi.io/cluster: my-kafka
-spec:
-  replicas: 1
-  roles:
-    - controller
-  storage:
-    type: ephemeral
+# apiVersion: kafka.strimzi.io/v1
+# kind: KafkaNodePool
+# metadata:
+#   name: kafka-controllers
+#   namespace: kafka
+#   labels:
+#     strimzi.io/cluster: my-kafka
+# spec:
+#   replicas: 1
+#   roles:
+#     - controller
+#   storage:
+#     type: ephemeral
