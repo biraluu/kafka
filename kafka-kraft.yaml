@@ -13,15 +13,12 @@ spec:
         tls: false
         authentication:
           type: scram-sha-512
-
+    authorization:
+      type: simple
     config:
-      authorizer.class.name: org.apache.kafka.metadata.authorizer.StandardAuthorizer
-      super.users: "User:dev-user;User:qa-user;User:staging-user"
-      process.roles: "broker,controller"
-      controller.quorum.voters: "0@my-kafka-kafka-brokers-0.my-kafka-kafka-brokers.kafka.svc:9093,1@my-kafka-kafka-brokers-1.my-kafka-kafka-brokers.kafka.svc:9093,2@my-kafka-kafka-brokers-2.my-kafka-kafka-brokers.kafka.svc:9093"
-      node.id: -1
-      controller.listener.names: "CONTROLLER"
-      listener.security.protocol.map: "CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT"
+      offsets.topic.replication.factor: 3
+      transaction.state.log.replication.factor: 3
+      transaction.state.log.min.isr: 2
 
   # must always be set for KRaft
   clusterCa:
