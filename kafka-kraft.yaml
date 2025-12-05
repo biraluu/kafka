@@ -26,3 +26,6 @@ spec:
 
   # no zookeeper
   zookeeper: null
+  entityOperator:
+    userOperator: {}
+    topicOperator: {}
