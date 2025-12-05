@@ -1,0 +1,29 @@
+apiVersion: kafka.strimzi.io/v1
+kind: Kafka
+metadata:
+  name: my-kafka
+  namespace: kafka
+spec:
+  kafka:
+    version: 4.1.1
+    listeners:
+      - name: internal
+        port: 9092
+        type: internal
+        tls: false
+        authentication:
+          type: scram-sha-512
+
+    config:
+      process.roles: "broker,controller"
+      controller.quorum.voters: "0@my-kafka-kafka-brokers-0.my-kafka-kafka-brokers.kafka.svc:9093,1@my-kafka-kafka-brokers-1.my-kafka-kafka-brokers.kafka.svc:9093,2@my-kafka-kafka-brokers-2.my-kafka-kafka-brokers.kafka.svc:9093"
+      node.id: -1
+      controller.listener.names: "CONTROLLER"
+      listener.security.protocol.map: "CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT"
+
+  # must always be set for KRaft
+  clusterCa:
+    generateCertificateAuthority: true
+
+  # no zookeeper
+  zookeeper: null

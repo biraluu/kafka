@@ -1,0 +1,80 @@
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaUser
+metadata:
+  name: dev-user
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-kafka
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: dev
+          patternType: prefix
+        operations:
+          - Read
+          - Write
+      - resource:
+          type: group
+          name: dev
+          patternType: prefix
+        operations:
+          - Read
+---
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaUser
+metadata:
+  name: qa-user
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-kafka
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: qa
+          patternType: prefix
+        operations:
+          - Read
+          - Write
+      - resource:
+          type: group
+          name: qa
+          patternType: prefix
+        operations:
+          - Read
+---
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaUser
+metadata:
+  name: staging-user
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-kafka
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: staging
+          patternType: prefix
+        operations:
+          - Read
+          - Write
+      - resource:
+          type: group
+          name: staging
+          patternType: prefix
+        operations:
+          - Read
