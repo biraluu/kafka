@@ -18,6 +18,8 @@ spec:
         operations:
           - Read
           - Write
+          - Create
+          - Describe
       - resource:
           type: group
           name: dev
@@ -45,6 +47,8 @@ spec:
         operations:
           - Read
           - Write
+          - Create
+          - Describe
       - resource:
           type: group
           name: qa
@@ -72,6 +76,8 @@ spec:
         operations:
           - Read
           - Write
+          - Create
+          - Describe
       - resource:
           type: group
           name: staging
